@@ -79,6 +79,7 @@ export default class App extends React.Component {
       clicks: 0
     };
     this.colorChange = this.colorChange.bind(this);
+    this.clickChange = this.clickChange.bind(this);
   }
 
   colorChange = (color) => {
