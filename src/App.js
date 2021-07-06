@@ -37,8 +37,8 @@ import { Stopwatch, Timer } from "react-native-stopwatch-timer";
 
 class Thing2 extends React.Component {
   render() {
-    const { colorChange, styles, theWords } = this.props;
-    const aClick = () => alert("ouch");
+    const { colorChange, styles, theWords, aClick, timesClicked } = this.props;
+    // const aClick = () => alert("ouch");
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{theWords.above}</Text>
@@ -49,6 +49,7 @@ class Thing2 extends React.Component {
         >
           {theWords.button}
         </button>
+        <Text style={styles.text}>times clicked: {timesClicked} </Text>
       </View>
     );
   }
@@ -60,7 +61,7 @@ export default class App extends React.Component {
     this.state = {
       colorChanges: StyleSheet.create({
         container: {
-          flex: 2,
+          flex: 1,
           backgroundColor: "#FF3EFF",
           alignItems: "center",
           justifyContent: "center"
@@ -71,7 +72,11 @@ export default class App extends React.Component {
           color: "white"
         }
       }),
-      words: { above: "you could click here.", button: "you could click this." }
+      words: {
+        above: "you could click here.",
+        button: "you could click this."
+      },
+      clicks: 0
     };
     this.colorChange = this.colorChange.bind(this);
   }
@@ -82,10 +87,11 @@ export default class App extends React.Component {
     let textStyle = color ? "italic" : "";
     let word1 = !color ? "you could click here." : "are you sure?";
     let word2 = !color ? "you could click this." : "hmmm";
+
     this.setState({
       colorChanges: StyleSheet.create({
         container: {
-          flex: 2,
+          flex: 1,
           backgroundColor: bg,
           alignItems: "center",
           justifyContent: "center"
@@ -101,13 +107,23 @@ export default class App extends React.Component {
     });
   };
 
+  clickChange = () => {
+    alert("ouch");
+    let numClicks = this.state.clicks + 1;
+    this.setState({ clicks: numClicks });
+  };
+
   render() {
     return (
-      <Thing2
-        colorChange={this.colorChange}
-        styles={this.state.colorChanges}
-        theWords={this.state.words}
-      />
+      <View style={{ flex: 1 }}>
+        <Thing2
+          colorChange={this.colorChange}
+          styles={this.state.colorChanges}
+          theWords={this.state.words}
+          aClick={this.clickChange}
+          timesClicked={this.state.clicks}
+        />
+      </View>
     );
   }
 }
