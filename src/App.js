@@ -73,10 +73,9 @@ export default class App extends React.Component {
   };
 
   colorChange = (color) => {
-    let bgO = "#FF3EFF";
-    let bgN = "#00FF00";
-    let bg = !color ? bgO : bgN;
+    let bg = !color ? "#FF3EFF" : "#00FF00";
     let text = !color ? "white" : "black";
+    let textStyle = color ? "italic" : "";
     this.setState({
       colorChanges: StyleSheet.create({
         container: {
@@ -86,6 +85,7 @@ export default class App extends React.Component {
           justifyContent: "center"
         },
         text: {
+          fontStyle: textStyle,
           fontSize: 24,
           color: text
         }
