@@ -55,22 +55,26 @@ class Thing2 extends React.Component {
 }
 
 export default class App extends React.Component {
-  state = {
-    colorChanges: StyleSheet.create({
-      container: {
-        flex: 2,
-        backgroundColor: "#FF3EFF",
-        alignItems: "center",
-        justifyContent: "center"
-      },
+  constructor(props) {
+    super(props);
+    this.state = {
+      colorChanges: StyleSheet.create({
+        container: {
+          flex: 2,
+          backgroundColor: "#FF3EFF",
+          alignItems: "center",
+          justifyContent: "center"
+        },
 
-      text: {
-        fontSize: 24,
-        color: "white"
-      }
-    }),
-    pictures: {}
-  };
+        text: {
+          fontSize: 24,
+          color: "white"
+        }
+      }),
+      pictures: {}
+    };
+    this.colorChange = this.colorChange.bind(this);
+  }
 
   colorChange = (color) => {
     let bg = !color ? "#FF3EFF" : "#00FF00";
