@@ -37,17 +37,17 @@ import { Stopwatch, Timer } from "react-native-stopwatch-timer";
 
 class Thing2 extends React.Component {
   render() {
-    const { colorChange, styles } = this.props;
+    const { colorChange, styles, theWords } = this.props;
     const aClick = () => alert("ouch");
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>here is a button.</Text>
+        <Text style={styles.text}>{theWords.above}</Text>
         <button
           onMouseEnter={() => colorChange(true)}
           onMouseLeave={() => colorChange(false)}
           onClick={aClick}
         >
-          you could click this.
+          {theWords.button}
         </button>
       </View>
     );
@@ -71,7 +71,7 @@ export default class App extends React.Component {
           color: "white"
         }
       }),
-      pictures: {}
+      words: { above: "you could click here.", button: "you could click this." }
     };
     this.colorChange = this.colorChange.bind(this);
   }
@@ -80,6 +80,8 @@ export default class App extends React.Component {
     let bg = !color ? "#FF3EFF" : "#00FF00";
     let text = !color ? "white" : "black";
     let textStyle = color ? "italic" : "";
+    let word1 = !color ? "you could click here." : "are you sure?";
+    let word2 = !color ? "you could click this." : "hmmm";
     this.setState({
       colorChanges: StyleSheet.create({
         container: {
@@ -95,26 +97,17 @@ export default class App extends React.Component {
         }
       }),
 
-      pictures: {}
+      words: { above: word1, button: word2 }
     });
   };
 
   render() {
     return (
-      <Thing2 colorChange={this.colorChange} styles={this.state.colorChanges} />
+      <Thing2
+        colorChange={this.colorChange}
+        styles={this.state.colorChanges}
+        theWords={this.state.words}
+      />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: "pink" ,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-
-  text: {
-    color: "white"
-  }
-});
