@@ -2,40 +2,38 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Vibration, Button } from "react-native";
 import { Stopwatch, Timer } from "react-native-stopwatch-timer";
 
-const aClick = () => alert("ouch");
+// function Thing() {
+//   const [bg, changebg] = useState("#FF3EFF");
 
-function Thing() {
-  const [bg, changebg] = useState("#FF3EFF");
+//   const styles = StyleSheet.create({
+//     container: {
+//       flex: 1,
+//       backgroundColor: `${bg}`,
+//       alignItems: "center",
+//       justifyContent: "center"
+//     },
+//     text: {
+//       fontSize: 24,
+//       color: bg === "#FF3EFF" ? "white" : "black"
+//     }
+//   });
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: `${bg}`,
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    text: {
-      fontSize: 24,
-      color: bg === "#FF3EFF" ? "white" : "black"
-    }
-  });
-
-  const handleHover = (color) => {
-    changebg(color);
-  };
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>there is a button here.</Text>
-      <button
-        onClick={aClick}
-        onMouseEnter={() => handleHover("#00FF00")}
-        onMouseLeave={() => handleHover("#FF3EFF")}
-      >
-        you could click here.
-      </button>
-    </View>
-  );
-}
+//   const handleHover = (color) => {
+//     changebg(color);
+//   };
+//   return (
+//     <View style={styles.container}>
+//       <Text style={styles.text}>there is a button here.</Text>
+//       <button
+//         onClick={aClick}
+//         onMouseEnter={() => handleHover("#00FF00")}
+//         onMouseLeave={() => handleHover("#FF3EFF")}
+//       >
+//         you could click here.
+//       </button>
+//     </View>
+//   );
+// }
 
 class Thing2 extends React.Component {
   render() {
