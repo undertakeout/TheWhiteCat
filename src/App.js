@@ -9,8 +9,24 @@ const rand = (n) => {
 
 const Thing = () => {
   const [bg, changebg] = useState("#FF3EFF");
-  const [txt, changetxt] = useState("white");
   const [numClicks, setClicks] = useState(0);
+  // const[top,changeTop] = useState('there is a button here.')
+  let backs = ["#8A71FF", "#007FFF", "#FF0000", "#FF9700", "#000000"];
+  let backs2 = ["#008900", "#9EFFFF", "#DCFF00", "#FFFFFF", "#47597C"];
+  let match = {
+    "#FF3EFF": "white",
+    "#8A71FF": "white",
+    "#007FFF": "white",
+    "#FF0000": "white",
+    "#FF9700": "black",
+    "#000000": "white",
+    "#008900": "white",
+    "#9EFFFF": "black",
+    "#DCFF00": "black",
+    "#FFFFFF": "black",
+    "#47597C": "white"
+  };
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -21,7 +37,7 @@ const Thing = () => {
     text: {
       fontStyle: bg === "#FF3EFF" ? "" : "italic",
       fontSize: 24,
-      color: `${txt}`
+      color: match[bg]
     }
   });
 
@@ -37,21 +53,18 @@ const Thing = () => {
     handleCount();
     alert("ouch");
   };
-  console.log(numClicks);
-  const changeWords = (color) => {
-    let top = color === "#00FF00" ? "are you sure?" : "there is a button here.";
-    let button = color !== "#00FF00" ? "you could click here." : "hmmm";
-    return [top, button];
-  };
+  let top = backs2.includes(bg) ? "there is a button here." : "are you sure?";
+  let button = backs2.includes(bg) ? "you could click this." : "hmmm";
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{changeWords(bg)[0]}</Text>
+      <Text style={styles.text}>{top}</Text>
       <button
         onClick={aClick}
-        onMouseEnter={() => handleHover("#00FF00")}
-        onMouseLeave={() => handleHover("#FF3EFF")}
+        onMouseEnter={() => handleHover(backs[rand(5)])}
+        onMouseLeave={() => handleHover(backs2[rand(5)])}
       >
-        {changeWords(bg)[1]}
+        {button}
       </button>
       <Text style={styles.text}>number of clicks: {numClicks}</Text>
       <Clock />
